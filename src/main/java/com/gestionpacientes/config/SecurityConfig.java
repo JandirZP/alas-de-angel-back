@@ -39,8 +39,8 @@ public class SecurityConfig {
                 .authorizeHttpRequests(auth -> auth
                         .requestMatchers("/usuarioRest", "/usuarioRest/login", "/error", "/api/sedes/activos",
                                 "/especialidad/custom", "/usuarioRest/por-rol-activo/**",
-                                "/usuarioRest/medicos/especialidad/**", "/ubigeoRest/**", 
-                                "/usuarioRest/pacientes/registro", "/usuarioRest/upload/**", 
+                                "/usuarioRest/medicos/especialidad/**", "/ubigeoRest/**",
+                                "/usuarioRest/pacientes/registro", "/usuarioRest/upload/**",
                                 "/usuarioRest/paciente/documento/**")
                         .permitAll()
                         .anyRequest().authenticated() // 3. Por ahora, ¡todo bloqueado!
@@ -66,13 +66,13 @@ public class SecurityConfig {
     CorsConfigurationSource corsConfigurationSource() {
         CorsConfiguration configuration = new CorsConfiguration();
 
-        // 1. ¿Quién puede entrar? (Tu Frontend)
-        configuration.setAllowedOrigins(Arrays.asList("http://localhost:5173"));
+        // CAMBIO AQUÍ: Usamos originPatterns para permitir cualquier URL de frontend
+        configuration.setAllowedOriginPatterns(Arrays.asList("*"));
 
-        // 2. ¿Qué pueden hacer? (POST para login, GET para ver datos, etc.)
+        // 2. ¿Qué pueden hacer?
         configuration.setAllowedMethods(Arrays.asList("GET", "POST", "PUT", "DELETE", "OPTIONS"));
 
-        // 3. ¿Qué datos pueden enviar en la cabecera? (Token, tipo de archivo)
+        // 3. ¿Qué datos pueden enviar en la cabecera?
         configuration.setAllowedHeaders(Arrays.asList("Authorization", "Content-Type"));
 
         // 4. Permitir credenciales (cookies, headers de autorización)

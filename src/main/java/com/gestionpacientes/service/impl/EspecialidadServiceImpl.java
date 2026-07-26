@@ -27,8 +27,15 @@ public class EspecialidadServiceImpl implements EspecialidadService {
     }
 
     @Override
-    public List<EspecialidadEntity> findAllCustom() {
-        return repositorio.findAllCustom();
+    public List<EspecialidadesDto> findAllCustom() {
+        return repositorio.findAllCustom().stream()
+                .map(e -> EspecialidadesDto.builder()
+                        .codigo(e.getCodigo())
+                        .nombre(e.getNombre())
+                        .descripcion(e.getDescripcion())
+                        .estado(e.getEstado())
+                        .build())
+                .collect(Collectors.toList());
     }
 
     @Override

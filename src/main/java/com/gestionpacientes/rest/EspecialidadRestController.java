@@ -22,7 +22,7 @@ public class EspecialidadRestController {
     }
 
     @GetMapping("/custom")
-    public List<EspecialidadEntity> findAllCustom() {
+    public List<EspecialidadesDto> findAllCustom() {
         return servicio.findAllCustom();
     }
 

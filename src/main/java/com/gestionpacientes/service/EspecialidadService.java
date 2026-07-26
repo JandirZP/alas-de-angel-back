@@ -9,7 +9,7 @@ public interface EspecialidadService {
 
     List<EspecialidadEntity> findAll();
 
-    List<EspecialidadEntity> findAllCustom();
+    List<EspecialidadesDto> findAllCustom();
 
     List<EspecialidadesDto> buscarPorMedico(Long idUsuario);
 
